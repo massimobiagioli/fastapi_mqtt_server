@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  mariadb:
+    image: mariadb:10.6.4
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=S3cret
+      - MYSQL_PASSWORD=mqtt
+      - MYSQL_USER=mqtt
+      - MYSQL_DATABASE=mqtt_server
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./data:/var/lib/mysql
+  mariadb-test:
+    image: mariadb:10.6.4
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=S3cret
+      - MYSQL_PASSWORD=mqtt
+      - MYSQL_USER=mqtt
+      - MYSQL_DATABASE=mqtt_server_test
+    ports:
+      - '3307:3306'
+volumes:
+  db:
+    driver: local
